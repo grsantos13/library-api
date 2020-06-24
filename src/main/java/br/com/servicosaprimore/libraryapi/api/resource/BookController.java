@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -54,6 +55,16 @@ public class BookController {
     public void delete(@PathVariable Long id){
         Book book = service.getById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         service.delete(book);
+    }
+
+    @PutMapping("/{id}")
+    public BookDTO update(@PathVariable Long id, BookDTO bookDTO){
+        return service.getById(id).map(book ->{
+            book.setAuthor(bookDTO.getAuthor());
+            book.setTitle(bookDTO.getTitle());
+            book = service.update(book);
+            return mapper.map(book, BookDTO.class);
+        }).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
