@@ -14,10 +14,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -87,5 +89,55 @@ public class LoanServiceTest {
                     .hasMessage("Book already loaned.");
 
         verify(repository, never()).save(savingLoan);
+    }
+
+    @Test
+    @DisplayName("Deve obter um empréstimo pelo Id.")
+    public void getLoanByIdTest(){
+        String customer = "Natália";
+        LocalDate loanDate = LocalDate.now();
+        Long id = 1L;
+        Book book = Book.builder().id(id).isbn("123").build();
+        Loan loan = Loan.builder()
+                            .id(id)
+                            .customer(customer)
+                            .loanDate(loanDate)
+                            .book(book)
+                            .build();
+
+        when(repository.findById(id)).thenReturn(Optional.of(loan));
+
+        Optional<Loan> result = loanService.getById(id);
+
+        assertThat(result.isPresent()).isTrue();
+        assertThat(result.get().getId()).isEqualTo(id);
+        assertThat(result.get().getCustomer()).isEqualTo(customer);
+        assertThat(result.get().getBook().getId()).isEqualTo(book.getId());
+        assertThat(result.get().getLoanDate()).isEqualTo(loanDate);
+
+        verify(repository, times(1)).findById(id);
+    }
+
+    @Test
+    @DisplayName("Deve atualizar um empréstimo.")
+    public void updateLoanTest(){
+        String customer = "Natália";
+        LocalDate loanDate = LocalDate.now();
+        Long id = 1L;
+        Book book = Book.builder().id(id).isbn("123").build();
+        Loan loan = Loan.builder()
+                .id(id)
+                .customer(customer)
+                .loanDate(loanDate)
+                .book(book)
+                .returned(true)
+                .build();
+
+        when(repository.save(loan)).thenReturn(loan);
+
+        Loan updatedLoan = loanService.update(loan);
+
+        assertThat(updatedLoan.isReturned()).isTrue();
+        verify(repository, times(1)).save(loan);
     }
 }
