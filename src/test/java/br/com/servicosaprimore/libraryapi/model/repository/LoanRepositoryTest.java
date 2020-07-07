@@ -9,6 +9,8 @@ import org.mockito.internal.stubbing.defaultanswers.GloballyConfiguredAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -30,23 +32,45 @@ public class LoanRepositoryTest {
     @Test
     @DisplayName("Deve verificar se existe empréstimo não devolvido para o livro informado.")
     public void existsByBookAndNotReturnedTest(){
+        Loan loan = createScenarioForTest();
+
+        boolean exists = repository.existsByBookAndNotReturned(loan.getBook());
+
+        assertThat(exists).isTrue();
+    }
+
+    @Test
+    @DisplayName("Deve buscar empréstimo pelo ISBN do livro ou pelo Customer.")
+    public void findByBookIsbnOrCustomerTest(){
+        Loan loan = createScenarioForTest();
+
+        Page<Loan> result = repository.findByBookIsbnOrCustomer(loan.getBook().getIsbn(),
+                                                                    loan.getCustomer(),
+                                                                    PageRequest.of(0, 10)
+                                                                );
+        assertThat(result.getContent()).hasSize(1);
+        assertThat(result.getContent()).contains(loan);
+        assertThat(result.getPageable().getPageSize()).isEqualTo(10);
+        assertThat(result.getPageable().getPageNumber()).isEqualTo(0);
+        assertThat(result.getTotalElements()).isEqualTo(1);
+    }
+
+    private Loan createScenarioForTest() {
         Book book = Book.builder()
-                            .isbn("123")
-                            .author("Natália Rodrigues")
-                            .title("As aventuras aventuradas")
-                            .build();
+                .isbn("123")
+                .author("Natália Rodrigues")
+                .title("As aventuras aventuradas")
+                .build();
         entityManager.persist(book);
 
         Loan loan = Loan.builder()
-                            .customer("Natália")
-                            .book(book)
-                            .loanDate(LocalDate.now())
-                            .build();
+                .customer("Natália")
+                .book(book)
+                .loanDate(LocalDate.now())
+                .build();
         entityManager.persist(loan);
 
-        boolean exists = repository.existsByBookAndNotReturned(book);
-
-        assertThat(exists).isTrue();
+        return loan;
     }
 
 }
