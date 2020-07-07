@@ -1,6 +1,7 @@
 package br.com.servicosaprimore.libraryapi.api.resource;
 
 import br.com.servicosaprimore.libraryapi.api.dto.LoanDTO;
+import br.com.servicosaprimore.libraryapi.api.dto.ReturnedLoanDTO;
 import br.com.servicosaprimore.libraryapi.exception.BusinessException;
 import br.com.servicosaprimore.libraryapi.model.entity.Book;
 import br.com.servicosaprimore.libraryapi.model.entity.Loan;
@@ -27,6 +28,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -135,6 +138,30 @@ public class LoanControllerTest {
                 .andExpect( status().isBadRequest() )
                 .andExpect( jsonPath("errors", Matchers.hasSize(1)) )
                 .andExpect(jsonPath("errors[0]").value("Book already loaned."));
+    }
+
+    @Test
+    @DisplayName("Deve devolver um livro")
+    public void returnBookTest() throws Exception{
+        ReturnedLoanDTO dto = ReturnedLoanDTO.builder().returned(true).build();
+        String json = new ObjectMapper().writeValueAsString(dto);
+        Loan loan = Loan.builder()
+                        .id(1L)
+                        .build();
+
+        BDDMockito.given(loanService.getById(Mockito.anyLong())).willReturn(Optional.of(loan));
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .patch(LOAN_API.concat("/1"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(json);
+
+        mvc
+                .perform(request)
+                .andExpect(status().isOk());
+
+        verify(loanService, times(1)).update(loan);
     }
 
 }

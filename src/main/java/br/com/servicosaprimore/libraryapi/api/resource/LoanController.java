@@ -1,12 +1,15 @@
 package br.com.servicosaprimore.libraryapi.api.resource;
 
 import br.com.servicosaprimore.libraryapi.api.dto.LoanDTO;
+import br.com.servicosaprimore.libraryapi.api.dto.ReturnedLoanDTO;
 import br.com.servicosaprimore.libraryapi.model.entity.Book;
 import br.com.servicosaprimore.libraryapi.model.entity.Loan;
 import br.com.servicosaprimore.libraryapi.service.BookService;
 import br.com.servicosaprimore.libraryapi.service.LoanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +44,14 @@ public class LoanController {
         Loan createdLoan = loanService.save(creatingLoan);
 
         return createdLoan.getId();
+    }
+
+    @PatchMapping("/{id}")
+    public void returnBook(@PathVariable Long id, @RequestBody ReturnedLoanDTO returned){
+        Loan loan = loanService.getById(id).get();
+            loan.setReturned(returned.getReturned());
+
+        loanService.update(loan);
     }
 
 
