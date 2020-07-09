@@ -89,7 +89,7 @@ public class BookController {
             @ApiResponse(code = 400, message = "Invalid parameters."),
             @ApiResponse(code = 404, message = "Book not found.")
     })
-    public BookDTO update(@PathVariable Long id, BookDTO bookDTO){
+    public BookDTO update(@PathVariable Long id, @RequestBody @Valid BookDTO bookDTO){
         log.info(" updating book by id: {} ", id);
         return service.getById(id).map(book ->{
             book.setAuthor(bookDTO.getAuthor());
