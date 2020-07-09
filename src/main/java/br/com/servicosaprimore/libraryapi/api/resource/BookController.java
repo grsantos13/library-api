@@ -6,8 +6,12 @@ import br.com.servicosaprimore.libraryapi.model.entity.Book;
 import br.com.servicosaprimore.libraryapi.model.entity.Loan;
 import br.com.servicosaprimore.libraryapi.service.BookService;
 import br.com.servicosaprimore.libraryapi.service.LoanService;
-import lombok.AllArgsConstructor;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -31,22 +35,35 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
+@Api("Book API")
+@Slf4j
 public class BookController {
-
     private final BookService service;
     private final ModelMapper mapper;
     private final LoanService loanService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation("Create a book.")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Created."),
+            @ApiResponse(code = 400, message = "Invalid parameters.")
+    })
     public BookDTO create(@Valid @RequestBody BookDTO bookDTO){
+        log.info(" creating a book for isbn: {} ", bookDTO.getIsbn());
         Book book = mapper.map(bookDTO, Book.class);
         book = service.save(book);
         return mapper.map(book, BookDTO.class);
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Get a book's detail by id.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK."),
+            @ApiResponse(code = 404, message = "Book not found.")
+    })
     public BookDTO get(@PathVariable Long id){
+        log.info(" getting a book details by id: {} ", id);
         return service.getById(id)
                                 .map( book -> mapper.map(book, BookDTO.class))
                                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -54,13 +71,26 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation("Delete a book by id.")
+    @ApiResponses({
+            @ApiResponse(code = 204, message = "NO CONTENT."),
+            @ApiResponse(code = 404, message = "Book not found.")
+    })
     public void delete(@PathVariable Long id){
+        log.info(" deleting book by id: {} ", id);
         Book book = service.getById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
         service.delete(book);
     }
 
     @PutMapping("/{id}")
+    @ApiOperation("Update a book by id.")
+    @ApiResponses({
+            @ApiResponse(code = 204, message = "NO CONTENT."),
+            @ApiResponse(code = 400, message = "Invalid parameters."),
+            @ApiResponse(code = 404, message = "Book not found.")
+    })
     public BookDTO update(@PathVariable Long id, BookDTO bookDTO){
+        log.info(" updating book by id: {} ", id);
         return service.getById(id).map(book ->{
             book.setAuthor(bookDTO.getAuthor());
             book.setTitle(bookDTO.getTitle());

@@ -22,11 +22,6 @@ public class LibraryApiApplication {
 		return new ModelMapper();
 	}
 
-	@Scheduled(cron = "0 50 18 1/1 * ?")
-	public void testeAgendamentoTarefas(){
-		System.out.println("agendamento de tarefas funcionando.");
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApiApplication.class, args);
 	}
