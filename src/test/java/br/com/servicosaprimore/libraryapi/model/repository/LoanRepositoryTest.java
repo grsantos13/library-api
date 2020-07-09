@@ -5,7 +5,6 @@ import br.com.servicosaprimore.libraryapi.model.entity.Loan;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.internal.stubbing.defaultanswers.GloballyConfiguredAnswer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -15,6 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,12 +65,34 @@ public class LoanRepositoryTest {
 
         Loan loan = Loan.builder()
                 .customer("Natália")
+                .customerEmail("customer@customer.com")
                 .book(book)
                 .loanDate(LocalDate.now())
                 .build();
         entityManager.persist(loan);
 
         return loan;
+    }
+
+    @Test
+    @DisplayName("Deve obter empréstimos cuja data empréstimo for menor ou igual a 3 dias atrás e não retornado")
+    public void findByLoanDateLessThanAndNotReturnedTest(){
+        Loan loan = createScenarioForTest();
+            loan.setLoanDate(LocalDate.now().minusDays(5));
+
+        List<Loan> result = repository.findByLoanDateLessThanAndNotReturned(LocalDate.now().minusDays(4));
+
+        assertThat(result).hasSize(1).contains(loan);
+    }
+
+    @Test
+    @DisplayName("Deve retornar vazio quando não houver empréstimos atrasados.")
+    public void noLoanFoundByLoanDateLessThanAndNotReturnedTest(){
+        Loan loan = createScenarioForTest();
+
+        List<Loan> result = repository.findByLoanDateLessThanAndNotReturned(LocalDate.now().minusDays(4));
+
+        assertThat(result).isEmpty();
     }
 
 }

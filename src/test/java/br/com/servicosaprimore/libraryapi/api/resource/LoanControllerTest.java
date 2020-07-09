@@ -65,6 +65,7 @@ public class LoanControllerTest {
         LoanDTO dto = LoanDTO.builder()
                             .isbn("123")
                             .customer("Natália")
+                            .customerEmail("customer@customer.com")
                             .build();
 
         String json = new ObjectMapper().writeValueAsString(dto);
@@ -79,6 +80,7 @@ public class LoanControllerTest {
         Loan loan = Loan.builder()
                         .id(1L)
                         .customer("Natália")
+                        .customerEmail("customer@customer.com")
                         .book(book)
                         .loanDate(LocalDate.now())
                         .build();
@@ -101,6 +103,7 @@ public class LoanControllerTest {
         LoanDTO dto = LoanDTO.builder()
                 .isbn("123")
                 .customer("Natália")
+                .customerEmail("customer@customer.com")
                 .build();
         String json = new ObjectMapper().writeValueAsString(dto);
 
@@ -123,6 +126,7 @@ public class LoanControllerTest {
         LoanDTO dto = LoanDTO.builder()
                 .isbn("123")
                 .customer("Natália")
+                .customerEmail("customer@customer.com")
                 .build();
         String json = new ObjectMapper().writeValueAsString(dto);
 
@@ -195,6 +199,7 @@ public class LoanControllerTest {
     @DisplayName("Deve filtrar empréstimos")
     public void findLoansTest() throws Exception {
         String customer = "Natália";
+        String customerEmail = "customer@customer.com";
         LocalDate loanDate = LocalDate.now();
         Long id = 1L;
         Book book = Book.builder().id(id).isbn("123").build();
@@ -202,6 +207,7 @@ public class LoanControllerTest {
                 .id(id)
                 .customer(customer)
                 .loanDate(loanDate)
+                .customerEmail(customerEmail)
                 .book(book)
                 .returned(true)
                 .build();
@@ -224,5 +230,7 @@ public class LoanControllerTest {
                 .andExpect(jsonPath("pageable.pageSize").value(100))
                 .andExpect(jsonPath("pageable.pageNumber").value(0));
     }
+
+
 
 }
