@@ -84,7 +84,7 @@
 2020-07-09 19:14:28.834  INFO 12589 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 2020-07-09 20:06:04.548  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:04.575  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:11.511  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:11.511  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:11.529  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -96,14 +96,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:11.643 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@4867ab9f]
+2020-07-09 20:06:11.643 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@4867ab9f]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -171,7 +171,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -192,7 +192,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -202,7 +202,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:11.933  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:11.934  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:12.486  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:12.486  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:12.488  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -214,14 +214,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:12.566 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@5d43409a]
+2020-07-09 20:06:12.566 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@5d43409a]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -289,7 +289,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -310,7 +310,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -320,7 +320,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:12.754  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:12.755  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:13.566  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:13.566  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:13.569  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -332,14 +332,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:13.636 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@7f5b9db]
+2020-07-09 20:06:13.636 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@7f5b9db]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -407,7 +407,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -428,7 +428,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -438,7 +438,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:13.836  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:13.837  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:14.405  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:14.405  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:14.407  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -450,14 +450,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:14.460 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@67507df]
+2020-07-09 20:06:14.460 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@67507df]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -525,7 +525,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -546,7 +546,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -556,7 +556,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:14.600  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:14.601  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:15.180  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:15.180  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:15.182  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -568,14 +568,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:15.233 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@6680f714]
+2020-07-09 20:06:15.233 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@6680f714]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -643,7 +643,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -664,7 +664,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -674,7 +674,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:15.335  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:15.346  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:15.907  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:15.907  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:15.908  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -686,14 +686,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:15.962 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@3fc7c734]
+2020-07-09 20:06:15.962 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@3fc7c734]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -761,7 +761,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -782,7 +782,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -792,7 +792,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:16.140  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:16.147  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:16.577  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:16.577  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:16.581  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -804,14 +804,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:16.617 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@412c5e8b]
+2020-07-09 20:06:16.617 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@412c5e8b]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -879,7 +879,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -900,7 +900,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -910,7 +910,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:17.020  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:17.027  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:17.478  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:17.478  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:17.480  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -922,14 +922,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:17.512 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@1f7cec93]
+2020-07-09 20:06:17.512 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@1f7cec93]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -997,7 +997,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -1018,7 +1018,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -1028,7 +1028,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:17.594  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:17.594  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:17.948  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:17.948  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:17.951  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -1040,14 +1040,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:17.999 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@58f254b1]
+2020-07-09 20:06:17.999 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@58f254b1]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -1115,7 +1115,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -1136,7 +1136,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -1146,7 +1146,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 
 2020-07-09 20:06:18.119  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : Starting BookControllerTest on gsnr1322 with PID 16622 (started by gsantos in /home/gsantos/git/library-api)
 2020-07-09 20:06:18.119  INFO 16622 --- [main] b.c.s.l.api.resource.BookControllerTest  : The following profiles are active: test
-2020-07-09 20:06:18.435  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2020-07-09 20:06:18.435  WARN 16622 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 2020-07-09 20:06:18.441  INFO 16622 --- [main] ConditionEvaluationReportLoggingListener : 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
@@ -1158,14 +1158,14 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in br.com.servicosaprimore.libraryapi.api.resource.BookController required a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' that could not be found.
+Parameter 2 of constructor in BookController required a bean of type 'LoanService' that could not be found.
 
 
 Action:
 
-Consider defining a bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' in your configuration.
+Consider defining a bean of type 'LoanService' in your configuration.
 
-2020-07-09 20:06:18.468 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [br.com.servicosaprimore.libraryapi.api.resource.BookControllerTest@61d60e38]
+2020-07-09 20:06:18.468 ERROR 16622 --- [main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4efc180e] to prepare test instance [BookControllerTest@61d60e38]
 
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -1233,7 +1233,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext
 	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230) ~[junit-rt.jar:na]
 	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58) ~[junit-rt.jar:na]
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'bookController' defined in file [/home/gsantos/git/library-api/target/classes/br/com/servicosaprimore/libraryapi/api/resource/BookController.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1358) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
@@ -1254,7 +1254,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124) ~[spring-test-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	... 64 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'br.com.servicosaprimore.libraryapi.service.LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'LoanService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1714) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1270) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1224) ~[spring-beans-5.2.7.RELEASE.jar:5.2.7.RELEASE]
